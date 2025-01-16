@@ -5,7 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scholar_chat/constants.dart';
 import 'package:scholar_chat/helper/show_snackbar.dart';
 import 'package:scholar_chat/pages/chat_page.dart';
-import 'package:scholar_chat/pages/cubits/register_cubit/cubit/register_cubit.dart';
+import 'package:scholar_chat/pages/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scholar_chat/widgets/custom_button.dart';
 import 'package:scholar_chat/widgets/custom_textfield.dart';
 
@@ -21,7 +21,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterCubit, RegisterState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
           isLoading = true;
@@ -103,7 +103,7 @@ class RegisterPage extends StatelessWidget {
                     CustomButton(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<RegisterCubit>(context)
+                          BlocProvider.of<AuthCubit>(context)
                               .registerUser(email: email!, password: password!);
                         } else {}
                       },
